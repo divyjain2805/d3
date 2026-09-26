@@ -94,7 +94,7 @@ function addMessage({ text, role, error = false, typing = false }) {
 
 async function checkConnection() {
     try {
-        const response = await fetch(`${API_BASE}/`);
+        const response = await fetch(API_BASE);
         setConnectionState(response.ok);
     } catch {
         setConnectionState(false);
