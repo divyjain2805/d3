@@ -1,5 +1,5 @@
 const isLocalDevelopment = ["localhost", "127.0.0.1"].includes(window.location.hostname);
-const API_BASE = isLocalDevelopment ? "http://127.0.0.1:8001" : window.location.origin;
+const API_BASE = isLocalDevelopment ? "http://127.0.0.1:8001" : `${window.location.origin}/api`;
 
 const form = document.querySelector("#chat-form");
 const input = document.querySelector("#question-input");

@@ -59,14 +59,39 @@ addresses. CORS is not an authentication mechanism.
 - `POST /chat` accepts `{"question": "Tell me about yourself."}` and returns
   `{"answer": "..."}`.
 
-The local default resume is `Divya_Jain_Resume_.pdf` in this folder. Resume PDFs
-under `backend/` are ignored by Git and are not uploaded with the source. For a
-deployment, upload the PDF privately to the host's persistent/private file
-storage and set `RESUME_PATH` to its absolute mounted path. Keep the filename
-and access private; do not paste the resume contents into source code or commit
-the PDF. The host must make that file available to the backend at runtime.
+The current default resume is `Divya_Jain_Resume_.pdf` in this folder and is
+committed in this repository, so Render deploys it with the backend source. This
+makes the PDF publicly accessible through the repository. If you later want to
+keep it private, remove it from Git and its history, then store it in the host's
+private file/object storage and set `RESUME_PATH` to its runtime path.
 
 On Vercel, serverless function filesystems are not suitable for a private file
 that must be uploaded after deployment. Use private object storage and adapt the
 backend to fetch the PDF securely, or deploy the backend on a host with a private
 persistent disk (such as a Render disk) and set `RESUME_PATH` to that disk path.
+
+## Deploy to Render and Vercel
+
+The repository includes a Render Blueprint (`render.yaml`) and Vercel
+configuration (`vercel.json`). The Render service is named
+`d3-resume-chat-api`; Vercel proxies `/api` requests to
+`https://d3-resume-chat-api.onrender.com`.
+
+1. In Render, create a **Blueprint** from the `d3` GitHub repository and select
+  `render.yaml`. During initial setup, enter `APP_ACCESS_TOKEN` and the
+  replacement Groq keys when prompted. Never put their values in Git. If the
+  Render service name is unavailable and you rename it, change the matching
+  destination hostname in `vercel.json` and push that change.
+2. Wait for the Render service to deploy and confirm its root health check
+  returns `Candidate Chat API is running.`
+3. In Vercel, import the same repository with the project root set to the `d3`
+  repository root. `vercel.json` publishes `frontend/` and proxies its `/api`
+  requests to Render. Deploy after the Render hostname is final.
+4. Open the Vercel domain and enter the `APP_ACCESS_TOKEN` value you set in
+  Render. The token is held only in page memory.
+
+The Blueprint uses Render's free web-service plan, which may sleep while idle
+and take longer to respond to the first request. Upgrade the plan if you need
+always-on service. The resume PDF is currently part of this Git repository, so
+the deployed Render backend receives it with the source. Use private object
+storage and remove the PDF from Git history if it should no longer be public.

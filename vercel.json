@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "outputDirectory": "frontend",
+  "rewrites": [
+    {
+      "source": "/api",
+      "destination": "https://d3-resume-chat-api.onrender.com/"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://d3-resume-chat-api.onrender.com/:path*"
+    }
+  ]
+}

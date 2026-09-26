@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: d3-resume-chat-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_ACCESS_TOKEN
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_API_KEY2
+        sync: false
+      - key: GROQ_API_KEY3
+        sync: false
