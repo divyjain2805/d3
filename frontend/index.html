@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f3f4ef" />
+    <meta name="description" content="Practice interview questions with a resume-grounded candidate assistant." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Candidate Desk | Interview practice</title>
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar" aria-label="Candidate details">
+            <a class="brand" href="#main" aria-label="Candidate Desk home">
+                <span class="brand-mark">d.</span>
+                <span>candidate desk</span>
+            </a>
+
+            <div class="sidebar-label">PROFILE</div>
+            <section class="profile-block" aria-labelledby="candidate-name">
+                <div class="avatar" aria-hidden="true">DJ</div>
+                <div>
+                    <h2 id="candidate-name">Divya Jain</h2>
+                    <p>Interview candidate</p>
+                </div>
+            </section>
+
+            <div class="profile-file">
+                <span class="file-mark" aria-hidden="true">PDF</span>
+                <span class="file-name">Divya Jain resume</span>
+                <span class="file-state" title="Resume configured in backend"
+                    aria-label="Resume configured">&#10003;</span>
+            </div>
+
+            <div class="sidebar-note">
+                <span class="note-rule"></span>
+                <p>Answers are grounded in the information available in your resume.</p>
+            </div>
+
+            <div class="sidebar-bottom">
+                <span class="online-dot" aria-hidden="true"></span>
+                <span id="connection-label">Checking assistant</span>
+                <span class="connection-light" id="connection-dot" aria-hidden="true"></span>
+            </div>
+        </aside>
+
+        <main id="main" class="main-panel">
+            <header class="topbar">
+                <div class="breadcrumb"><span>Workspace</span><span class="crumb-separator">/</span><strong>Resume
+                        Review</strong></div>
+                <div class="topbar-status"><span class="status-dot" id="top-status-dot"></span><span
+                        id="top-status-text">Connecting</span></div>
+            </header>
+
+            <section class="chat-layout" aria-label="Interview practice chat">
+                <div class="chat-heading">
+                    <div class="eyebrow"><span class="eyebrow-line"></span> RESUME-GROUNDED ASSISTANT</div>
+                    <h1>Get your ans<br /><em>Related to resume.</em></h1>
+                    <p class="intro-copy">Ask an interview question. Your assistant will answer as you, using only the
+                        information fill in resume.</p>
+                </div>
+
+                <div class="conversation" id="conversation" aria-live="polite" aria-label="Conversation">
+                    <div class="message assistant-message welcome-message">
+                        <div class="message-avatar" aria-hidden="true">d.</div>
+                        <div class="message-content">
+                            <div class="message-meta"><strong>Candidate assistant</strong><span>Ready when you
+                                    are</span></div>
+                            <p>Hi I'm Divya. Ask your interview-question. Choose a prompt to begin, or ask me anything
+                                about my resume.</p>
+                        </div>
+                    </div>
+
+                    <div class="suggestions" id="suggestions" aria-label="Suggested questions">
+                        <button class="suggestion" type="button" data-question="Tell me about yourself."><span>01</span>
+                            Tell me about yourself <b aria-hidden="true">&#8599;</b></button>
+                        <button class="suggestion" type="button"
+                            data-question="What are your strongest skills?"><span>02</span> What are your strongest
+                            skills? <b aria-hidden="true">&#8599;</b></button>
+                        <button class="suggestion" type="button"
+                            data-question="Walk me through your experience."><span>03</span> Walk me through your
+                            projets <b aria-hidden="true">&#8599;</b></button>
+                    </div>
+                </div>
+
+                <form class="composer" id="chat-form">
+                    <label class="sr-only" for="question-input">Your interview question</label>
+                    <textarea id="question-input" name="question" rows="1" placeholder="Ask an interview question..."
+                        required></textarea>
+                    <div class="composer-footer">
+                        <span class="composer-hint">Answers use resume details only</span>
+                        <div class="composer-actions">
+                            <span class="key-hint">ENTER TO SEND</span>
+                            <button class="send-button" id="send-button" type="submit" aria-label="Send question"
+                                title="Send question">
+                                <span aria-hidden="true">&#8593;</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <p class="fine-print">Review each answer and make it sound like Divya.</p>
+            </section>
+        </main>
+    </div>
+    <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
+        <form class="access-form" id="access-form">
+            <span class="eyebrow"><span class="eyebrow-line"></span> PRIVATE WORKSPACE</span>
+            <h2 id="access-title">Enter access token</h2>
+            <p>Use the access token provided by the workspace owner.</p>
+            <label for="access-token">Access token</label>
+            <input id="access-token" name="access-token" type="password" autocomplete="current-password" required />
+            <p class="access-error" id="access-error" role="alert" hidden></p>
+            <button class="access-submit" type="submit">Continue <span aria-hidden="true">&#8594;</span></button>
+        </form>
+    </dialog>
+    <script src="app.js" defer></script>
+</body>
+
+</html>
