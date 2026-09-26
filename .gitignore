@@ -1,7 +1,6 @@
 .env
 .env.*
 !.env.example
-backend/*.pdf
 .venv/
 venv/
 __pycache__/
